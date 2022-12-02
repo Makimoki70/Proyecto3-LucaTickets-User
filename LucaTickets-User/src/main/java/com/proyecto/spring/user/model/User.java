@@ -65,7 +65,7 @@ public class User {
 	 * @param Fecha de alta: Cuando se dió de alta en la aplicación
 	 * 
 	 * */
-	private Date fecha_alta;
+	//private Date fecha_alta;
 	
 	
 }
