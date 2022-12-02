@@ -11,13 +11,15 @@ import com.proyecto.spring.user.repository.DAOUser;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private DAOUser daoUser;
+	
+	public User addUser(Long id, String nombre, String apellido, String mail, String contrasena, Date fecha_alta) {
+		final User user = daoUser.findById(id).orElseThrow();
 
-	public User addUser(User user) {
-		//final User userdb = daoUser.findById(id).orElseThrow();
+		daoUser.save(user);
 		
-		return daoUser.save(user);
+		return user;
 	}
 }
