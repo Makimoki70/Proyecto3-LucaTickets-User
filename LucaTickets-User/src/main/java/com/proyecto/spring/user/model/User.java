@@ -58,7 +58,7 @@ public class User {
 	 * @param contraseña: Contraseña de la cuenta
 	 * 
 	 * */
-	private String contrasenya;
+	private String pass;
 	
 	/**
 	 * 
