@@ -1,9 +1,7 @@
 package com.proyecto.spring.user.service;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.client.RestTemplate;
+
 import org.springframework.stereotype.Service;
 
 import com.proyecto.spring.user.model.User;

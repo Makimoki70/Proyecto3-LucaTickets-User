@@ -1,11 +1,13 @@
 package com.proyecto.spring.user.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.proyecto.spring.user.model.response.DTOUser;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +23,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 public class User {
-	
 	
 	/**
 	 * 
@@ -65,7 +66,7 @@ public class User {
 	 * @param Fecha de alta: Cuando se dió de alta en la aplicación
 	 * 
 	 * */
-	//private Date fecha_alta;
 	
+	private Date fecha_alta;
 	
 }
