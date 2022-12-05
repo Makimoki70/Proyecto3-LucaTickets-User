@@ -1,4 +1,4 @@
-package com.proyecto.spring.config;
+package com.proyecto.spring.user.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,7 @@ public class OpenApiConfig {
                 .description("Documentación de la Users API")
                 .version("v1.0")
                 .contact(new Contact().name("Grupo 1").
-                        url("https://").email("antonio@santos.es"))
+                        url("https://antoniosantos.es").email("antonio@santos.es")) //*******
                 .license(new License().name("LICENSE").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
                 .description("Descripcion del proyecto")
