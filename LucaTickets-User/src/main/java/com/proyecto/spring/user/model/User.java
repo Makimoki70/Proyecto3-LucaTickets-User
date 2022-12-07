@@ -1,16 +1,21 @@
 package com.proyecto.spring.user.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 /**
  * 
+ * Nombre de clase: User.
+ * Descripcion: Clase model del microservicio User. 
+ * Fecha: 05/12/2022
  * @author Joel Pascual Mahindo
  * @version 0.1
  * @since 0.1
@@ -20,8 +25,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Data
+@Schema(name="User", description = "User Class")
 public class User {
-	
 	
 	/**
 	 * 
@@ -30,6 +35,10 @@ public class User {
 	 * */
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Schema(name= "id", 
+	description = "Identificador único para el usuario", 
+    example = "42", 
+    required = true)
 	private Long id;
 	
 	/**
@@ -37,6 +46,7 @@ public class User {
 	 * @param nombre: Como se llama el usuario
 	 * 
 	 * */
+	@Size(min = 0, max = 45)
 	private String nombre;	
 	
 	/**
@@ -44,6 +54,7 @@ public class User {
 	 * @param apellido: Como se apellida el usuario
 	 * 
 	 * */
+	@Size(min = 0, max = 45)
 	private String apellido;
 	
 	/**
@@ -51,13 +62,15 @@ public class User {
 	 * @param amail: Correo electrónico del usuario
 	 * 
 	 * */
+	@Size(min = 0, max = 45)
 	private String mail;
 	
 	/**
 	 * 
-	 * @param contraseña: Contraseña de la cuenta
+	 * @param pass: Contraseña de la cuenta
 	 * 
 	 * */
+	@Size(min = 0, max = 45)
 	private String pass;
 	
 	/**
@@ -65,7 +78,7 @@ public class User {
 	 * @param Fecha de alta: Cuando se dió de alta en la aplicación
 	 * 
 	 * */
-	private Date fecha_alta;
 	
+	private Date fecha_alta;
 	
 }
