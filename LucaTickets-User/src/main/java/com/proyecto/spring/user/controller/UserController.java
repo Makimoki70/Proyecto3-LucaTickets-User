@@ -1,14 +1,18 @@
 package com.proyecto.spring.user.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.spring.user.controller.error.UserNotFoundException;
 import com.proyecto.spring.user.model.User;
 import com.proyecto.spring.user.model.adapter.UserDateAdapter;
 import com.proyecto.spring.user.model.response.DTOUser;
@@ -63,6 +67,40 @@ public class UserController {
 	@PostMapping("/add")
 	public ResponseEntity<DTOUser> saveUser(@RequestBody DTOUser user) {
 		User result = userService.addUser(adapter.convertToEntity(user));
+		return ResponseEntity.of(Optional.of(adapter.convertToDto(result)));
+	}
+	
+	@Operation(summary = "Devolver Usuario", description = "Dado un id, devolver un usuario de la base de datos SQL", tags = {
+		"user" })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Usuario insertado correctamente", content = {
+			@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+		@ApiResponse(responseCode = "401", description = "Usuario no válido (NO introducido) ", content = @Content),
+		@ApiResponse(responseCode = "404", description = "Tabla no localizada (NO introducido)", content = @Content),
+
+		@ApiResponse(responseCode = "501", description = "Error de servidor, Podria no estar activado?", content = @Content) }
+
+			)
+	@GetMapping("/{id}")
+	public ResponseEntity<DTOUser> getUserById(@PathVariable long id) {
+		User result = userService.getUserById(id).orElseThrow(() -> new UserNotFoundException(id));
+		return ResponseEntity.of(Optional.of(adapter.convertToDto(result)));
+	}
+	
+	@Operation(summary = "Devolver Lista Usuarios", description = "Devolver todos usuarios de la base de datos SQL", tags = {
+		"user" })
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Usuario insertado correctamente", content = {
+			@Content(mediaType = "application/json", schema = @Schema(implementation = User.class)) }),
+		@ApiResponse(responseCode = "401", description = "Usuario no válido (NO introducido) ", content = @Content),
+		@ApiResponse(responseCode = "404", description = "Tabla no localizada (NO introducido)", content = @Content),
+	
+		@ApiResponse(responseCode = "501", description = "Error de servidor, Podria no estar activado?", content = @Content) }
+	
+			)
+	@GetMapping("/")
+	public ResponseEntity<List<DTOUser>> getAllUsers() {
+		List<User> result = userService.getAllUsers();
 		return ResponseEntity.of(Optional.of(adapter.convertToDto(result)));
 	}
 }

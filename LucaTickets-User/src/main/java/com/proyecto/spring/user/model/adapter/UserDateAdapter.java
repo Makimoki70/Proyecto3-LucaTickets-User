@@ -2,7 +2,9 @@ package com.proyecto.spring.user.model.adapter;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -43,6 +45,17 @@ public class UserDateAdapter implements AttributeConverter<LocalDate, Date> {
         
         return dtoUser;
     }
+	
+	/**
+	 * 
+	 * @param users
+	 * @return
+	 */
+	public List<DTOUser> convertToDto(List<User> users){
+		return users.stream()
+				.map(u -> convertToDto(u))
+				.collect(Collectors.toList());
+	}
 	
 	/**
      * Método que convierte los datos DTO extraidos del objeto en base de datos, a valores entity de java

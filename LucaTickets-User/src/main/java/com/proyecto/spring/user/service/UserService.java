@@ -1,5 +1,8 @@
 package com.proyecto.spring.user.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -30,5 +33,20 @@ public class UserService {
      */
 	public User addUser(User user) {
 		return daoUser.save(user);
+	}
+	
+	/**
+	 *
+	*/
+	public Optional<User> getUserById(long id) {
+		return daoUser.findById(id);
+	}
+	
+	/**
+	 * 
+	 * 
+	 */
+	public List<User> getAllUsers() {
+		return daoUser.findAll();
 	}
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @Schema(name="User", description = "User Class")
+@Table(name = "user")
 public class User {
 	
 	/**
